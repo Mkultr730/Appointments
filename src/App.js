@@ -14,6 +14,14 @@ function App() {
     ]);
   }
 
+  const deleteAppointment = (id) => {
+    setAppointments(appointments.filter( appointment => {
+      return appointment.id !== id;
+    }));
+  }
+
+  const title = appointments.length === 0 ? 'There is no appointments yet' : 'Appointments management'
+
   return (
     <Fragment>
     <h1>Patients Managements</h1>
@@ -26,11 +34,12 @@ function App() {
           />
         </div>
         <div className="one-half column">
-          <h2>Appointments management</h2>
+          <h2>{title}</h2>
           { appointments.map(appointment => (
-            <Appointment 
+            <Appointment
               key={appointment.id}
               appointment={appointment}
+              deleteAppointment={deleteAppointment}
             />
           )) }
         </div>
