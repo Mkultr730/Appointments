@@ -10,17 +10,16 @@ function App() {
     initAppointments = [];
   }
 
-
-
   // appointments
   const [appointments, setAppointments] = useState(initAppointments);
 
   useEffect(() => {
-    let initAppointments = JSON.parse(localStorage.getItem('appointments'));
     if (initAppointments) {
       localStorage.setItem('appointments', JSON.stringify(appointments));
+    } else {
+      localStorage.setItem('appointments', JSON.stringify([]));
     }
-  }, [appointments]);
+  }, [appointments, initAppointments]);
 
   const createAppointment = (appointment) => {
     setAppointments([
